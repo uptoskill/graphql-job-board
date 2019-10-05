@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { JobList } from './JobList';
 import { loadCompany } from './requests';
 
 export class CompanyDetail extends Component {
@@ -22,6 +23,8 @@ export class CompanyDetail extends Component {
       <div>
         <h1 className="title">{company.name}</h1>
         <div className="box">{company.description}</div>
+        <h5 className="title is-5">Jobs at {company.name}</h5>
+        <JobList jobs={company.jobs} />
       </div>
     );
   }
