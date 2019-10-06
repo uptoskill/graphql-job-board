@@ -1,11 +1,17 @@
+import { getAccessToken, isLoggedIn } from './auth';
+
 const endpointURL = 'http://localhost:9000/graphql';
 
 async function graphqlRequest(query, variables={}) {
-  const response = await fetch(endpointURL, {
+  const request = {
     method: 'POST',
     headers: {'content-type': 'application/json'},
     body: JSON.stringify({query, variables})
-  });
+  };
+  if (isLoggedIn()) {
+    request.headers['authorization'] = 'Bearer ' + getAccessToken();
+  }
+  const response = await fetch(endpointURL, request);
   const responseBody = await response.json();
   if (responseBody.errors) {
     const message = responseBody.errors.map((error) => error.message).join('\n');
