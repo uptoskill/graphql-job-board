@@ -28,5 +28,11 @@
     "companyId": "SJV0-wdOM",
     "title": "Tester",
     "description": "You must be good at finding bugs."
+  },
+  {
+    "id": "Hk9_BexcM",
+    "title": "Product Manager",
+    "description": "You need to give something to do to the developers otherwise they get bored.",
+    "companyId": "HJRa-DOuG"
   }
 ]
