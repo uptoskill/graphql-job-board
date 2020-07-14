@@ -1,5 +1,4 @@
-import { ApolloClient, ApolloLink, HttpLink, InMemoryCache } from 'apollo-boost';
-import gql from 'graphql-tag';
+import { ApolloClient, ApolloLink, HttpLink, InMemoryCache, gql } from '@apollo/client/core';
 import { getAccessToken, isLoggedIn } from './auth';
 
 const endpointURL = 'http://localhost:9000/graphql';
