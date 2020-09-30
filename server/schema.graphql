@@ -1,0 +1,29 @@
+type Job {
+  id: ID!
+  title: String
+  description: String
+  company: Company
+}
+
+type Company {
+  id: ID!
+  name: String
+  description: String
+  jobs: [Job]
+}
+
+input CreateJobInput {
+  companyId: ID
+  title: String
+  description: String
+}
+
+type Query {
+  jobs: [Job]
+  job(id: ID!): Job
+  company(id: ID!): Company
+}
+
+type Mutation {
+  createJob(input: CreateJobInput): Job
+}

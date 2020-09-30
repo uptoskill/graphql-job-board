@@ -7,13 +7,15 @@
     "build": "react-scripts build"
   },
   "dependencies": {
+    "apollo-boost": "^0.4.9",
     "bulma": "0.9.0",
+    "graphql": "^15.3.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-router-dom": "5.2.0"
   },
   "devDependencies": {
-    "react-scripts": "3.4.1"
+    "react-scripts": "^3.4.3"
   },
   "browserslist": {
     "production": [
