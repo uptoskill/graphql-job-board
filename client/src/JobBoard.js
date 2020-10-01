@@ -1,25 +1,20 @@
-import React, { Component } from 'react';
+import React, { Fragment } from 'react';
+import { useQuery } from '@apollo/react-hooks';
 import { JobList } from './JobList';
-import { loadJobs } from './request';
+import { jobsQuery } from './graphql';
 
-export class JobBoard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { jobs: [] };
-  }
+const JobBoard = () => {
+  const { loading, error, data } = useQuery(jobsQuery, { fetchPolicy: 'no-cache' });
+  if (loading) return <Fragment />;
+  if (error) return `Error! ${error.message}`;
+  const jobs = data ? data.jobs : [];
 
-  async componentDidMount() {
-    const jobs = await loadJobs();
-    this.setState({ jobs });
-  }
+  return (
+    <div>
+      <h1 className="title">Job Board</h1>
+      <JobList jobs={jobs} />
+    </div>
+  );
+};
 
-  render() {
-    const { jobs } = this.state;
-    return (
-      <div>
-        <h1 className="title">Job Board</h1>
-        <JobList jobs={jobs} />
-      </div>
-    );
-  }
-}
+export default JobBoard;

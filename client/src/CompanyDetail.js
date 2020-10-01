@@ -1,31 +1,25 @@
-import React, { Component } from 'react';
-import { loadCompany } from './request';
+import React, { Fragment } from 'react';
+import { useQuery } from '@apollo/react-hooks';
 import { JobList } from './JobList';
+import { companyQuery } from './graphql';
 
-export class CompanyDetail extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { company: null };
-  }
+const CompanyDetail = props => {
+  const { companyId } = props.match.params;
+  const { loading, error, data } = useQuery(companyQuery, {
+    variables: { id: companyId },
+  });
+  if (loading) return <Fragment />;
+  if (error) return `Error! ${error.message}`;
+  const company = data ? data.company : null;
 
-  async componentDidMount() {
-    const { companyId } = this.props.match.params;
-    const company = await loadCompany(companyId);
-    this.setState({ company });
-  }
+  return (
+    <div>
+      <h1 className="title">{company.name}</h1>
+      <div className="box">{company.description}</div>
+      <h5 className="title is-5">Jobs at {company.name}</h5>
+      <JobList jobs={company.jobs} />
+    </div>
+  );
+};
 
-  render() {
-    const { company } = this.state;
-    if (!company) {
-      return null;
-    }
-    return (
-      <div>
-        <h1 className="title">{company.name}</h1>
-        <div className="box">{company.description}</div>
-        <h5 className="title is-5">Jobs at {company.name}</h5>
-        <JobList jobs={company.jobs} />
-      </div>
-    );
-  }
-}
+export default CompanyDetail;

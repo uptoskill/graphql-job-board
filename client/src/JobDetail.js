@@ -1,32 +1,27 @@
-import React, { Component } from 'react';
+import React, { Fragment } from 'react';
+import { useQuery } from '@apollo/react-hooks';
 import { Link } from 'react-router-dom';
-import { loadJob } from './request';
+import { jobQuery } from './graphql';
 
-export class JobDetail extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { job: null };
-  }
+const JobDetail = props => {
+  const { jobId } = props.match.params;
+  const { loading, error, data } = useQuery(jobQuery, {
+    fetchPolicy: 'no-cache',
+    variables: { id: jobId },
+  });
+  if (loading) return <Fragment />;
+  if (error) return `Error! ${error.message}`;
+  const job = data ? data.job : null;
 
-  async componentDidMount() {
-    const { jobId } = this.props.match.params;
-    const job = await loadJob(jobId);
-    this.setState({ job });
-  }
+  return (
+    <div>
+      <h1 className="title">{job.title}</h1>
+      <h2 className="subtitle">
+        <Link to={`/companies/${job.company.id}`}>{job.company.name}</Link>
+      </h2>
+      <div className="box">{job.description}</div>
+    </div>
+  );
+};
 
-  render() {
-    const { job } = this.state;
-    if (!job) {
-      return null;
-    }
-    return (
-      <div>
-        <h1 className="title">{job.title}</h1>
-        <h2 className="subtitle">
-          <Link to={`/companies/${job.company.id}`}>{job.company.name}</Link>
-        </h2>
-        <div className="box">{job.description}</div>
-      </div>
-    );
-  }
-}
+export default JobDetail;

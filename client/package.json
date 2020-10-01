@@ -7,9 +7,12 @@
     "build": "react-scripts build"
   },
   "dependencies": {
+    "@apollo/react-hooks": "^4.0.0",
     "apollo-boost": "^0.4.9",
     "bulma": "0.9.0",
     "graphql": "^15.3.0",
+    "install": "^0.13.0",
+    "npm": "^6.14.8",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-router-dom": "5.2.0"
