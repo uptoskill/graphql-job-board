@@ -3,11 +3,11 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { isLoggedIn, logout } from './auth';
 import CompanyDetail from './CompanyDetail';
-import { LoginForm } from './LoginForm';
+import LoginForm from './LoginForm';
 import JobBoard from './JobBoard';
 import JobDetail from './JobDetail';
 import JobForm from './JobForm';
-import { NavBar } from './NavBar';
+import NavBar from './NavBar';
 import { client } from './graphql';
 
 export class App extends Component {

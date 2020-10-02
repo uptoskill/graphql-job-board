@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { JobList } from './JobList';
+import JobList from './JobList';
 import { jobsQuery } from './graphql';
 
 const JobBoard = () => {
