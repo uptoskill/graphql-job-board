@@ -1,6 +1,6 @@
 import { ApolloProvider } from '@apollo/react-hooks';
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, useHistory, Redirect } from 'react-router-dom';
 import { isLoggedIn, logout } from './auth';
 import CompanyDetail from './CompanyDetail';
 import LoginForm from './LoginForm';
@@ -15,18 +15,20 @@ const App = props => {
 
   const handleLogin = () => {
     setLoggedIn({ loggedIn: true });
-    props.history.push('/');
+    //moved this redirect to LoginForm
+    //router.history.push('/');
   };
 
   const handleLogout = () => {
     logout();
     setLoggedIn({ loggedIn: false });
-    props.history.push('/');
+    window.location.reload(false);
+    //props.router.history.push('/');
   };
 
   return (
     <ApolloProvider client={client}>
-      <Router ref={router => (this.router = router)}>
+      <Router>
         <div>
           <NavBar loggedIn={loggedIn} onLogout={handleLogout} />
           <section className="section">
@@ -36,7 +38,9 @@ const App = props => {
                 <Route path="/companies/:companyId" component={CompanyDetail} />
                 <Route exact path="/jobs/new" component={JobForm} />
                 <Route path="/jobs/:jobId" component={JobDetail} />
-                <Route exact path="/login" render={() => <LoginForm onLogin={handleLogin} />} />
+                <Route>
+                  <LoginForm onLogin={handleLogin}></LoginForm>
+                </Route>
               </Switch>
             </div>
           </section>

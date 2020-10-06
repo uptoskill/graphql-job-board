@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { login } from './auth';
+import { withRouter } from 'react-router-dom';
 
 const LoginForm = props => {
   const [form, setState] = useState({
@@ -21,6 +22,7 @@ const LoginForm = props => {
     login(form.email, form.password).then(ok => {
       if (ok) {
         props.onLogin();
+        props.history.push('/');
       } else {
         setState({
           ...form,
@@ -68,7 +70,7 @@ const LoginForm = props => {
   );
 };
 
-export default LoginForm;
+export default withRouter(LoginForm);
 
 /*
 
