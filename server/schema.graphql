@@ -1,0 +1,24 @@
+# ROOTQUERY SCHEMA DEFINES WHAT A USER CAN QUERY
+type Query {
+  greeting: String
+  # JOB takes an id is an argument and expect a return of Job
+  job(id: ID!): Job
+  # JOBS IS AN ARRAY OF TYPE Job
+  jobs: [Job]
+  # COMPANIES IS AN ARRAY TYPE Company
+  companies: [Company]
+}
+
+type Job {
+  # The exclamation mark states that a property is expected
+  id: ID!
+  title: String
+  company: Company
+  description: String
+}
+
+type Company {
+  id: ID!
+  name: String
+  description: String
+}
