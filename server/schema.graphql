@@ -5,6 +5,7 @@ type Query {
   job(id: ID!): Job
   # JOBS IS AN ARRAY OF TYPE Job
   jobs: [Job]
+  company(id: ID!): Company
   # COMPANIES IS AN ARRAY TYPE Company
   companies: [Company]
 }
@@ -17,8 +18,20 @@ type Job {
   description: String
 }
 
+# INPUT type to make mutations easier on the frontend
+input CreateJobInput {
+  companyId: ID
+  title: String
+  description: String
+}
+
+type Mutation {
+  createJob(input: CreateJobInput): Job
+}
+
 type Company {
   id: ID!
   name: String
   description: String
+  jobs: [Job]
 }
