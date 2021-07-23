@@ -16,5 +16,35 @@
     "companyId": "SJV0-wdOM",
     "title": "Full-Stack Developer",
     "description": "We are looking for a Full-Stack Developer familiar with Node.js, Express, and React."
+  },
+  {
+    "id": "SkfS7pkqM",
+    "companyId": "SJV0-wdOM",
+    "title": "DevOps Engineer",
+    "description": "We need somebody to restart the servers when they fall over."
+  },
+  {
+    "id": "r1VTGxlcf",
+    "companyId": "SJV0-wdOM",
+    "title": "Tester",
+    "description": "You must be good at finding bugs."
+  },
+  {
+    "id": "Hk9_BexcM",
+    "title": "Product Manager",
+    "description": "You need to give something to do to the developers otherwise they get bored.",
+    "companyId": "HJRa-DOuG"
+  },
+  {
+    "id": "HyqHp1toO",
+    "title": "Product Manager",
+    "description": "Best Scrum Leader Ever, ",
+    "companyId": "HJRa-DOuG"
+  },
+  {
+    "id": "Bk9pPgFod",
+    "title": "Product Owner",
+    "description": "Assume ownership of the product resulting in better communication",
+    "companyId": "HJRa-DOuG"
   }
 ]
